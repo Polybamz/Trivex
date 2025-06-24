@@ -4,6 +4,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import * as THREE from 'three';
 
+
 // --- INTERFACES ---
 
 interface Project {
@@ -231,7 +232,7 @@ const Header: React.FC = () => {
       {/* Fixed header with conditional background on scroll */}
       <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-900/80 backdrop-blur-sm' : ''}`}>
         <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#" className="text-2xl font-bold text-white">TRIVEX</a>
+          <a href="#" className="text-2xl font-bold text-white"><img src="/logo.png" alt="logo"  className='h-[60px] w-auto' /></a>
           {/* Desktop navigation links */}
           <div className="hidden md:flex items-center space-x-8">
             <a href="#portfolio" className="hover:text-cyan-400 transition-colors">Portfolio</a>
@@ -682,6 +683,11 @@ const InsightsSection: React.FC = () => {
  * Replaces `alert()` with a console log as `alert()` is not recommended in production.
  */
 const ContactSection: React.FC = () => {
+  const [name, setName] = React.useState<any>()
+  const [email, setEmail] = React.useState<any>()
+  const [subject, setSubject] = React.useState<any>()
+  const [message, setMessage] = React.useState<any>()
+
   /**
    * Handles the form submission.
    * @param e - The form event.
@@ -692,7 +698,24 @@ const ContactSection: React.FC = () => {
     // Using a custom modal/alert would be better than window.alert in production
     console.log('Form submitted!'); // Replaced alert() with console.log
     // Potentially add a state to show a custom success message here
+    console.log(email,name,subject,message)
   };
+
+  const handlePost = async () => {
+    try { 
+      await fetch('api/route.js',
+        {
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            subject: subject,
+            message: message
+          })
+        }
+      )
+    } catch (e) { }
+    
+  }
 
   return (
     <section id="contact" className="py-20 md:py-32">
@@ -702,11 +725,11 @@ const ContactSection: React.FC = () => {
           <p className="text-lg text-gray-400 mt-4 mb-10">Have a groundbreaking idea or a complex challenge? We thrive on the impossible. Partner with us.</p>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <input type="text" placeholder="Your Name" required className="bg-gray-800 border border-gray-700 rounded-lg p-3 focus:ring-2 focus:ring-cyan-400 focus:outline-none transition-all w-full" />
-              <input type="email" placeholder="Your Email" required className="bg-gray-800 border border-gray-700 rounded-lg p-3 focus:ring-2 focus:ring-cyan-400 focus:outline-none transition-all w-full" />
+              <input type="text" value ={name} onChange={(e)=>setName(e.target.value)} placeholder="Your Name" required className="bg-gray-800 border border-gray-700 rounded-lg p-3 focus:ring-2 focus:ring-cyan-400 focus:outline-none transition-all w-full" />
+              <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} placeholder="Your Email" required className="bg-gray-800 border border-gray-700 rounded-lg p-3 focus:ring-2 focus:ring-cyan-400 focus:outline-none transition-all w-full" />
             </div>
             <div className="mb-6">
-              <select required className="bg-gray-800 border border-gray-700 rounded-lg p-3 focus:ring-2 focus:ring-cyan-400 focus:outline-none transition-all w-full appearance-none">
+              <select required value={subject} onChange={(e)=>setSubject(e.target.value)} className="bg-gray-800 border border-gray-700 rounded-lg p-3 focus:ring-2 focus:ring-cyan-400 focus:outline-none transition-all w-full appearance-none">
                 <option value="">I'm interested in... (Select a Category)</option>
                 <option>Investing in Trivex</option>
                 <option>Partnering as a Startup</option>
@@ -716,7 +739,7 @@ const ContactSection: React.FC = () => {
               </select>
             </div>
             <div className="mb-8">
-              <textarea placeholder="Tell us about your project or inquiry..." rows={5} required className="bg-gray-800 border border-gray-700 rounded-lg p-3 focus:ring-2 focus:ring-cyan-400 focus:outline-none transition-all w-full"></textarea>
+              <textarea value={message} onChange={(e)=>setMessage(e.target.value)} placeholder="Tell us about your project or inquiry..." rows={5} required className="bg-gray-800 border border-gray-700 rounded-lg p-3 focus:ring-2 focus:ring-cyan-400 focus:outline-none transition-all w-full"></textarea>
             </div>
             <button type="submit" className="bg-cyan-500 text-gray-900 font-bold py-4 px-10 rounded-lg hover:bg-cyan-400 transition-all text-lg w-full md:w-auto">Submit Inquiry</button>
           </form>
