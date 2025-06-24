@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Trivex Project
+
+A modern web application built with Next.js, React 19, and Three.js.
+
+## Features
+- Next.js 15 with TurboPack for fast development
+- React 19 for UI components
+- Three.js for 3D graphics rendering
+- Nodemailer integration for email functionality
+- TypeScript for type safety
+- TailwindCSS for styling
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+- Node.js (version 18 or higher recommended)
+- npm or yarn
 
+### Installation
+1. Clone the repository
+2. Install dependencies:
 ```bash
-npm run dev
+npm install
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Available Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `npm run dev` - Starts the development server
+- `npm run build` - Creates a production build
+- `npm run start` - Runs the production server
+- `npm run lint` - Runs Next.js linting
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+trivex/
+├── app/                  # Next.js app directory
+│   ├── layout.tsx        # Root layout
+│   ├── page.tsx          # Home page
+│   └── main/             # Main application section
+│       └── page.tsx      # Main page
+├── api/                  # API routes
+│   └── route.js          # API endpoint
+├── public/               # Static assets
+│   ├── logo.jpg          # Logo image
+│   ├── mytsvideo.mp4     # Video asset
+│   └── *.svg             # SVG assets
+└── utils/                # Utility functions
+    └── nodemailer.js     # Email utility
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Technologies Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js](https://nextjs.org/) - React framework
+- [React 19](https://react.dev/) - UI library
+- [Three.js](https://threejs.org/) - 3D library
+- [TypeScript](https://www.typescriptlang.org/) - Type checking
+- [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Nodemailer](https://nodemailer.com/) - Email sending
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Configuration
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The project comes pre-configured with:
+- TypeScript support
+- TailwindCSS integration
+- Next.js linting rules
